@@ -1,6 +1,6 @@
-## SSM框架整合
+# SSM框架整合
 
-### 流程
+#### 流程
 
 1. 创建工程
 2. SSM整合
@@ -25,7 +25,7 @@
 
 
 
-**步骤**
+#### 具体流程
 
 - 导入坐标
 
@@ -166,7 +166,6 @@
   		public class JdbcConfig {
   		
   		    // 创建属性
-  		
   		    @Value("${jdbc.driver}")
   		    private String driver;
   		    @Value("${jdbc.url}")
@@ -176,7 +175,7 @@
   		    @Value("jdbc.password")
   		    private String password;
   		
-  		    // 创建数据源
+  		    // 创建数据源，提交到容器中
   		    @Bean
   		    public DataSource dataSource(){
   		        DruidDataSource dataSource = new DruidDataSource();
@@ -188,39 +187,40 @@
   		    }
   		}
   		```
-
-  	- 创建jdbc.properties
-
-  		- ```properties
+  		
+	- 创建jdbc.properties
+  	
+		- ```properties
   			jdbc.driver = com.mysql.jdbc.Driver
   			jdbc.url = jdbc:mysql:///db1
   			jdbc.username = root
   			jdbc.password = 123456
   			```
-
-  - 创建MybatisConfig
-
-  	- ```java
-  		public class MybatisConfig {
-  		    
-  		    // 创建sqlSessionFactory
-  		    @Bean
-  		    public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource){
-  		        SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
-  		        factoryBean.setDataSource(dataSource);// 设置数据源
-  		        factoryBean.setTypeAliasesPackage("com.lucky.domain");
-  		        return factoryBean;
-  		    }
-  		    
-  		    // 创建mapper文件
-  		    @Bean
-  		    public MapperScannerConfigurer mapperScannerConfigurer(){
-  		        MapperScannerConfigurer msc = new MapperScannerConfigurer();
-  		        msc.setBasePackage("com.lucky.dao");
-  		        return msc;
-  		    }
-  		}
-  		```
+  	
+- 创建MybatisConfig
+  
+  - ```java
+    	public class MybatisConfig {
+    	    
+    	    // 创建sqlSessionFactory
+    	    // 使用SqlSessionFactoryBean创建对象，方便创建对象
+    	    @Bean
+    	    public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource){
+    	        SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
+    	        factoryBean.setDataSource(dataSource);// 设置数据源
+    	        factoryBean.setTypeAliasesPackage("com.lucky.domain");
+    	        return factoryBean;
+    	    }
+    	    
+    	    // 创建mapper文件
+    	    @Bean
+    	    public MapperScannerConfigurer mapperScannerConfigurer(){
+    	        MapperScannerConfigurer msc = new MapperScannerConfigurer();
+    	        msc.setBasePackage("com.lucky.dao");
+    	        return msc;
+    	    }
+    	}
+    	```
 
   - 创建ServletConfig
 
@@ -258,7 +258,7 @@
 
   - 在数据库中创建Book表
 
-  - 创建Book实体类
+  - 创建Book实体类(**也可以使用lombok注解快捷开发实体类**)
 
     - ```java
       public class Book {
@@ -312,7 +312,7 @@
       }
       ```
 
-  - 创建BookDao
+  - 创建BookDao(创建接口，MyBatis实现动态代理)
 
     - ```java
       public interface BookDao {

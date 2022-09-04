@@ -75,7 +75,7 @@
       }
       ```
 
-      
+   2. 这里的dataSource也是由第三方bean注入到Mybaits配置中
 
 3. 配置`SpringConfig`
 

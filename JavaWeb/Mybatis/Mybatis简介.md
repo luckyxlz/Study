@@ -1,11 +1,13 @@
-## Mybatis简介
+# Mybatis简介
 
 #### 什么是Mybatis?
 
-- Mybatis是一款优秀的持久层框架，用于简化JDBC开发
+- Mybatis是一款优秀的**持久层**框架，用于**简化JDBC开发**
 - MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。
-- MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录
+- MyBatis 可以通过简单的**XML**或**注解**来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录
 - Mybatis本是Apache的一个开源项目iBatis，2010年这个项目由apache software foundation 迁移到google code，并且改名为Mybatis。2010年11月迁移到Github
+
+
 
 #### 持久层
 

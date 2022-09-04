@@ -81,7 +81,7 @@
    - ```java
      {
        // get IoC container;     configuration should be a file of xml
-       Application ctx = new ClassPathXmlApplicationContext(configuration);
+       ApplicationContext ctx = new ClassPathXmlApplicationContext(configuration);
      	// get bean
        ctx.getbean();
      }
@@ -102,15 +102,13 @@
 
 #### 步骤：
 
-
-
 1. 删除使用new的形式创建对象的代码
 
 2. 提供依赖对象对应的setter方法
 
    - ```java
       {
-      	private UserDao userDao;
+        private UserDao userDao;
         
         public setUserDao(userDao);
       }

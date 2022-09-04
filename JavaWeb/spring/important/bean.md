@@ -21,7 +21,7 @@
 - `destroy-method`
     - 功能：`bean`消亡之前执行一些功能
 
-- `aotowire`
+- `autowire`
     - `byName`：按名字自动填充
     - `byType`：按类型自动填充
 
@@ -169,7 +169,7 @@
 ### bean的生命周期
 
 - 生命周期：从创建到消亡的完整过程
-- bean生命周期：bean从创建到销毁的整体过程
+- bean生命周期：bean从**创建**到**销毁**的整体过程
 - bean生命周期控制：在bean创建后到销毁前做一些事情
 - **过程**
     - 初始化容器
@@ -216,8 +216,8 @@
 
 - 方式三：使用bean类型获取
 
-    - ```
-        BookDao bookDao = ctx.getBean(BookDao.clss)
+    - ```java
+        BookDao bookDao = ctx.getBean(BookDao.class)
         ```
-
-### 
+        
+        

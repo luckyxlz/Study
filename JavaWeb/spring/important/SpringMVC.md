@@ -2,8 +2,6 @@
 
 
 
-## SpringMVC简介
-
 ### SpringMVC概述
 
 - `SpringMVC`技术与`Servlet`技术功能等同，均属于`web`层开发技术
@@ -47,7 +45,7 @@
          @ResponseBody
          public String save(){
              System.out.println("user save...");
-             return "";
+             return '{"user":"save"}';
          }
      }
      ```
@@ -109,14 +107,14 @@
 - SpringMVC用到的注解
   1. `Controller`
      - 名称：`@Controller`
-     - 类型：注解
+     - 类型：类注解
      - 位置：SpringMVC控制器类定义上方
      - 作用：设定`SpringMVC`的核心控制器`bean`
   2. `ResponseBody`
      - 名称：`@ResponseBody`
-     - 类型：注解
+     - 类型：方法注解
      - 位置：`SpringMVC`控制器方法定义上方
-     - 作用：设置当前控制器方法响应内容为当前返回值，无需解析
+     - 作用：设置当前控制器方法响应内容为当前返回值，`无需解析`
 
 
 
@@ -156,7 +154,7 @@
 
 	- SpringMVC加载的bean对应的包均在com.lucky.controller包内
 
-- Spring相关bean加载控制
+- sSpring相关bean加载控制
 
 	- **方式一**：Spring加载的bean设定扫描范围为com.lucky,排除掉controller包内的bean
 	- **方式二**：Spring加载的bean设定扫描范围为精准范围，例如service包，dao包
@@ -212,9 +210,7 @@
 
 
 
-## 请求与响应
-
-### 5种类型参数传递
+### 请求与响应
 
 #### 请求参数
 
@@ -250,7 +246,7 @@
 			@RequestMapping("/commonParam")
 			@ResponseBody
 			public String Commonparam(User user){
-			  System.out.pringln("uset"+user);
+			    System.out.pringln("user"+user);
 			    return "";
 			}
 			
@@ -259,13 +255,13 @@
 
 	- 嵌套POJO类型参数
 
-		- 请求参数名与形参对象属性名相同，按照对象层次结构关系即可接收嵌套POJO属性参数
+		- 请求参数名与形参对象属性名相同，**按照对象层次结构关系即可接收嵌套POJO属性参数**
 
 		- > 请求地址例子：localhost/pojoContainerPojoParam?name=lucky&address.city=shantou
 
 	- 数组类型参数
 
-		- 请求参数名与形参对象属性名相同且请求参数为多个，定义数组类型形参即可接收参数
+		- 请求参数名与形参对象属性名相同且请求参数为多个，**定义数组类型形参即可接收参数**
 
 		- > Localhost/array?likes=swim&likes=computer
 
@@ -278,8 +274,6 @@
 	- 类型：形参注解
 	- 位置：`SpringMVC`控制器方法行参定义前面
 	- 作用：绑定请求参数与处理器方法形参间的关系
-
-
 
 
 > 使用过滤器对乱码数据进行处理
@@ -295,7 +289,7 @@
 
 
 
-### Json数据传递参数
+#### Json数据传递参数
 
 三种参数：
 
@@ -315,7 +309,7 @@
 		</dependency>
 		```
 
-- 开启自动转化json数据的支持
+- 开启自动转化json数据的支持(使用**@EnableWebMvc**)
 
 	- ```java
 		@Configuration
@@ -344,7 +338,7 @@
 
 
 
-### 日期型参数传递
+#### 日期型参数传递
 
 - 日期类型数据基于系统不同格式也不尽相同
 	- 2088-08-18
@@ -359,12 +353,12 @@
 
 
 
-### 响应
+#### 响应
 
 - 响应页面
 - 响应数据
 	- 文本数据
-	- json数据
+	- json数据(需要引入转化为json对象的jar包)
 	
 		- ```java
 			public List<User> toJsonList(){
